@@ -130,7 +130,7 @@ export default function HardwareScannerMode({ amount, onBack, onClose }: Hardwar
             Payment Authorized
           </h3>
           <p className="text-gray-600 mb-6">
-            Your biometric payment of ${amount.toFixed(2)} is complete.
+            Your biometric payment of ₹{amount.toFixed(2)} is complete.
           </p>
 
           <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">

@@ -308,7 +308,7 @@ export default function CameraScannerMode({ amount, onBack, onClose }: CameraSca
           <h3 className="text-xl font-bold text-gray-900 mb-2">Biometric Verified</h3>
           <p className="text-gray-600 mb-6 text-sm">
             Palm pattern matched via CNN fusion. <br/>
-            <strong>${amount.toFixed(2)}</strong> authorized.
+            <strong>₹{amount.toFixed(2)}</strong> authorized.
           </p>
 
           <div className="bg-gray-50 border border-dashed border-gray-300 rounded-xl p-5 mb-6">

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { AuthProvider } from './context/AuthContext';
+import { ThemeProvider } from './context/ThemeContext';
 import { useAuth } from './hooks/useAuth';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -23,8 +24,10 @@ function AppContent() {
 
 export default function App() {
   return (
-    <AuthProvider>
-      <AppContent />
-    </AuthProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <AppContent />
+      </AuthProvider>
+    </ThemeProvider>
   );
 }

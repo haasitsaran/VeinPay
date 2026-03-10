@@ -4,6 +4,7 @@ import { Lock, Mail, Building2, Eye, EyeOff, User, Camera, UploadCloud } from 'l
 import Webcam from 'react-webcam';
 import { useAuth } from '../hooks/useAuth';
 import { UserRole } from '../context/AuthContext';
+import ThemeToggle from '../components/ThemeToggle';
 
 interface SignupProps {
   onSwitch: () => void;
@@ -118,17 +119,20 @@ export default function Signup({ onSwitch }: SignupProps) {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-gradient-to-br from-blue-600 via-cyan-600 to-blue-700 flex items-center justify-center p-4"
+      className="min-h-screen bg-gradient-to-br from-blue-600 via-cyan-600 to-blue-700 dark:from-slate-950 dark:via-slate-900 dark:to-slate-900 flex items-center justify-center p-4"
     >
       <div className="w-full max-w-md">
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className="bg-white rounded-2xl shadow-2xl p-8"
+          className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl p-8 border border-white/10 dark:border-slate-700"
         >
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Create Account</h1>
-            <p className="text-gray-600">Join VeinPay Today</p>
+          <div className="flex items-start justify-between mb-8">
+            <div className="text-left">
+              <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-1">Create Account</h1>
+              <p className="text-gray-600 dark:text-gray-300 text-sm">Join VeinPay Today</p>
+            </div>
+            <ThemeToggle size="sm" />
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -150,14 +154,14 @@ export default function Signup({ onSwitch }: SignupProps) {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Username</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Username</label>
               <div className="relative">
                 <Mail className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
                 <input
                   type="text"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg outline-none"
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg outline-none bg-white dark:bg-slate-800 text-gray-900 dark:text-gray-100"
                   placeholder="23211A0524"
                 />
               </div>
@@ -165,14 +169,14 @@ export default function Signup({ onSwitch }: SignupProps) {
 
             {role === 'business' && (
               <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Business Name</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Business Name</label>
                 <div className="relative">
                   <Building2 className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
                   <input
                     type="text"
                     value={businessName}
                     onChange={(e) => setBusinessName(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg outline-none"
+                    className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg outline-none bg-white dark:bg-slate-800 text-gray-900 dark:text-gray-100"
                     placeholder="Enter business name"
                   />
                 </div>
@@ -180,14 +184,14 @@ export default function Signup({ onSwitch }: SignupProps) {
             )}
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Password</label>
               <div className="relative">
                 <Lock className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
                 <input
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-10 py-2 border border-gray-300 rounded-lg outline-none"
+                  className="w-full pl-10 pr-10 py-2 border border-gray-300 dark:border-slate-600 rounded-lg outline-none bg-white dark:bg-slate-800 text-gray-900 dark:text-gray-100"
                   placeholder="••••••••"
                 />
                 <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-3 text-gray-400">
@@ -197,14 +201,14 @@ export default function Signup({ onSwitch }: SignupProps) {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1">Confirm Password</label>
               <div className="relative">
                 <Lock className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
                 <input
                   type={showPassword ? 'text' : 'password'}
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg outline-none"
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg outline-none bg-white dark:bg-slate-800 text-gray-900 dark:text-gray-100"
                 />
               </div>
             </div>

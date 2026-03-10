@@ -4,6 +4,7 @@ import { ShoppingCart, Plus, Trash2, DollarSign, LogOut, BarChart3, Calendar } f
 import { useAuth } from '../hooks/useAuth';
 import { CartItem } from '../types';
 import PaymentModal from '../components/PaymentModal';
+import ThemeToggle from '../components/ThemeToggle';
 
 const catalogItems = [
   { id: '1', name: 'Coffee', price: 5.50 },
@@ -51,8 +52,8 @@ export default function BusinessDashboard() {
   const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50">
-      <header className="bg-white shadow-sm border-b border-gray-200">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-900">
+      <header className="bg-white dark:bg-slate-900 shadow-sm border-b border-gray-200 dark:border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -63,17 +64,20 @@ export default function BusinessDashboard() {
                 </svg>
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">VeinPay</h1>
-                <p className="text-xs text-gray-500">{user?.businessName}</p>
+                <h1 className="text-2xl font-bold text-gray-900 dark:text-white">VeinPay</h1>
+                <p className="text-xs text-gray-500 dark:text-gray-400">{user?.businessName}</p>
               </div>
             </div>
-            <button
-              onClick={logout}
-              className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all"
-            >
-              <LogOut className="w-5 h-5" />
-              Logout
-            </button>
+            <div className="flex items-center gap-3">
+              <ThemeToggle size="sm" />
+              <button
+                onClick={logout}
+                className="flex items-center gap-2 px-4 py-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-slate-800 rounded-lg transition-all"
+              >
+                <LogOut className="w-5 h-5" />
+                Logout
+              </button>
+            </div>
           </div>
         </div>
       </header>
@@ -103,14 +107,14 @@ export default function BusinessDashboard() {
             className="grid grid-cols-1 lg:grid-cols-3 gap-6"
           >
             <div className="lg:col-span-2 space-y-6">
-              <motion.div className="bg-white rounded-lg shadow-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Search Items</h3>
+              <motion.div className="bg-white dark:bg-slate-900 rounded-lg shadow-lg p-6 border border-gray-100 dark:border-slate-800">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Search Items</h3>
                 <input
                   type="text"
                   placeholder="Search for items..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                  className="w-full px-4 py-2 border border-gray-300 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none bg-white dark:bg-slate-800 text-gray-900 dark:text-gray-100"
                 />
               </motion.div>
 
@@ -124,10 +128,10 @@ export default function BusinessDashboard() {
                       exit={{ opacity: 0, scale: 0.9 }}
                       whileHover={{ y: -4 }}
                       onClick={() => addToCart(item)}
-                      className="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-all text-left"
+                      className="bg-white dark:bg-slate-900 rounded-lg shadow-md p-4 hover:shadow-lg transition-all text-left border border-gray-100 dark:border-slate-800"
                     >
-                      <p className="font-semibold text-gray-900">{item.name}</p>
-                      <p className="text-lg font-bold text-blue-600 mt-2">${item.price.toFixed(2)}</p>
+                      <p className="font-semibold text-gray-900 dark:text-white">{item.name}</p>
+                      <p className="text-lg font-bold text-blue-600 mt-2">₹{item.price.toFixed(2)}</p>
                       <div className="flex items-center justify-between mt-3">
                         <span className="text-xs text-gray-500">Add to cart</span>
                         <Plus className="w-4 h-4 text-blue-600" />
@@ -138,7 +142,7 @@ export default function BusinessDashboard() {
               </motion.div>
             </div>
 
-            <motion.div className="bg-white rounded-lg shadow-lg p-6 h-fit sticky top-6">
+            <motion.div className="bg-white dark:bg-slate-900 rounded-lg shadow-lg p-6 h-fit sticky top-6 border border-gray-100 dark:border-slate-800">
               <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                 <ShoppingCart className="w-5 h-5" />
                 Cart
@@ -157,8 +161,8 @@ export default function BusinessDashboard() {
                       className="flex items-center justify-between bg-gray-50 p-3 rounded-lg"
                     >
                       <div className="flex-1">
-                        <p className="font-medium text-gray-900 text-sm">{item.name}</p>
-                        <p className="text-xs text-gray-600">${item.price.toFixed(2)}</p>
+                        <p className="font-medium text-gray-900 dark:text-white text-sm">{item.name}</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400">₹{item.price.toFixed(2)}</p>
                       </div>
                       <div className="flex items-center gap-2">
                         <button
@@ -188,12 +192,12 @@ export default function BusinessDashboard() {
 
               <div className="border-t pt-4 space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Subtotal:</span>
-                  <span className="font-semibold text-gray-900">${total.toFixed(2)}</span>
+                  <span className="text-gray-600 dark:text-gray-300">Subtotal:</span>
+                  <span className="font-semibold text-gray-900 dark:text-white">₹{total.toFixed(2)}</span>
                 </div>
                 <div className="bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg p-4 text-white">
                   <p className="text-sm opacity-90 mb-1">Total</p>
-                  <p className="text-2xl font-bold">${total.toFixed(2)}</p>
+                  <p className="text-2xl font-bold">₹{total.toFixed(2)}</p>
                 </div>
 
                 <button
@@ -216,38 +220,38 @@ export default function BusinessDashboard() {
           >
             <motion.div
               whileHover={{ y: -5 }}
-              className="bg-white rounded-lg shadow-lg p-6"
+              className="bg-white dark:bg-slate-900 rounded-lg shadow-lg p-6 border border-gray-100 dark:border-slate-800"
             >
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-gray-600 font-medium">Today's Revenue</h3>
+                <h3 className="text-gray-600 dark:text-gray-300 font-medium">Today's Revenue</h3>
                 <DollarSign className="w-5 h-5 text-green-600" />
               </div>
-              <p className="text-3xl font-bold text-gray-900">$1,250.00</p>
-              <p className="text-xs text-gray-500 mt-1">18 transactions</p>
+              <p className="text-3xl font-bold text-gray-900 dark:text-white">₹1,250.00</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">18 transactions</p>
             </motion.div>
 
             <motion.div
               whileHover={{ y: -5 }}
-              className="bg-white rounded-lg shadow-lg p-6"
+              className="bg-white dark:bg-slate-900 rounded-lg shadow-lg p-6 border border-gray-100 dark:border-slate-800"
             >
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-gray-600 font-medium">This Month</h3>
+                <h3 className="text-gray-600 dark:text-gray-300 font-medium">This Month</h3>
                 <BarChart3 className="w-5 h-5 text-blue-600" />
               </div>
-              <p className="text-3xl font-bold text-gray-900">$28,450.00</p>
-              <p className="text-xs text-gray-500 mt-1">412 transactions</p>
+              <p className="text-3xl font-bold text-gray-900 dark:text-white">₹28,450.00</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">412 transactions</p>
             </motion.div>
 
             <motion.div
               whileHover={{ y: -5 }}
-              className="bg-white rounded-lg shadow-lg p-6"
+              className="bg-white dark:bg-slate-900 rounded-lg shadow-lg p-6 border border-gray-100 dark:border-slate-800"
             >
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-gray-600 font-medium">Average Order</h3>
+                <h3 className="text-gray-600 dark:text-gray-300 font-medium">Average Order</h3>
                 <Calendar className="w-5 h-5 text-cyan-600" />
               </div>
-              <p className="text-3xl font-bold text-gray-900">$69.00</p>
-              <p className="text-xs text-gray-500 mt-1">This month avg</p>
+              <p className="text-3xl font-bold text-gray-900 dark:text-white">₹69.00</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">This month avg</p>
             </motion.div>
           </motion.div>
         )}
