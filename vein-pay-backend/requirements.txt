@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+pydantic
+python-jose[cryptography]
+pycryptodome
+tensorflow
+opencv-python
+numpy
+python-multipart
